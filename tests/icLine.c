@@ -13,6 +13,8 @@ int main(){
 		int qx = hx >> 1;
 
 		clear();
+
+		icText(2, 2, "This is some text");
 		icCurrentChar = '.';
 		//icCircle(hx, hy, 20);
 

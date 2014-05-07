@@ -12,6 +12,5 @@ void icLine(int x1, int y1, int x2, int y2);
 void icCircle(int x, int y, int radius);
 void icDial(int x, int y, int radius, float theta);
 void icBarGraph(int minX, int minY, int maxX, int maxY, int percent);
-void icText(int x, int y, const char* msg);
 
 #endif
