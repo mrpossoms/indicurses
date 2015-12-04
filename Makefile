@@ -14,6 +14,9 @@ all:
 	gcc -I$(INC) -c $(SRC)
 	ar rcs $(DST)/$(LIB) *.o
 	rm *.o
+	mkdir -p $(DST)/include
+	cat /dev/null >| $(DST)/include/$(NAME).h
+	find ./$(INC) -name "*.h" -exec cat {} > $(DST)/include/$(NAME).h \;
 
 testlib: $(SRC)
 	gcc -I$(TSTINC) -c $(SRC)
@@ -22,11 +25,6 @@ testlib: $(SRC)
 
 tests: testlib
 	$(foreach test, $(TSTS), gcc $(test) -o $(TST)/bin/$(test).bin
-package:
-	make
-	mkdir -p $(DST)/include
-	cat /dev/null >| $(DST)/include/$(NAME).h
-	find ./$(INC) -name "*.h" -exec cat {} > $(DST)/include/$(NAME).h \;
 
 install:
 	echo 'Installing the library'

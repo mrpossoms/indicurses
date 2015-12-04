@@ -1,8 +1,8 @@
 FLAGS=-Wint-to-pointer-cast
 SRC=./src/*.c
 INC=./../include
-LIB=./../lib/libindicurses.a
-LINK= -lm -lncurses
+LIB=-L./../lib/
+LINK= -lm -lncurses -lindicurses
 
 all:
 	find ./ -iname "*.c" -exec gcc {} $(LIB) -I$(INC) $(LINK) -o {}.bin \;
