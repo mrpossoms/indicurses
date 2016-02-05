@@ -25,13 +25,13 @@ int main(){
 		icDial(qx, qy, 10, t + 2);
 		icDial(hx, qy, 10, t + 3);
 		icDial(hx + qx, qy, 10, t + 6);
-		
+
 		int topLeft[2] = { 5, qy + 10 };
 		int bottomRight[2] = { IC_TERM_WIDTH - 5, IC_TERM_HEIGHT - 2};
 		int data[100];
 
 		for(int i = 100; i--;){
-			data[i] = (10 + sin(10 * (t + i * 0.01)) * 10);
+			data[i] = (10 + sin(10 * (t + i * 0.01)) * 100 * sin(t + i * 0.01));
 		}
 
 		icLineGraph(topLeft, bottomRight, '*', data, 100);
@@ -42,9 +42,9 @@ int main(){
 			t = -M_PI;
 		}
 
-		usleep(10000);	
+		usleep(10000);
 		icPresent();
-	} 
+	}
 
 	return 0;
 }

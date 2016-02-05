@@ -61,12 +61,19 @@ void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, in
 		for(int i = w; i--;){
 			if(i){
 				icLine(
-					origin[0] + i, _map(data[(int)(i * di)], min, max, topLeftCoord[1], bottomRightCoord[1]),
-					origin[0] + (i - 1), _map(data[(int)((i - 1) * di)], min, max, topLeftCoord[1], bottomRightCoord[1])
+					origin[0] + i, _map(data[(int)(i * di)], min, max, bottomRightCoord[1], topLeftCoord[1]),
+					origin[0] + (i - 1), _map(data[(int)((i - 1) * di)], min, max, bottomRightCoord[1], topLeftCoord[1])
 				);
 			}
 		}
 	}
+
+	char buf[32] = {};
+	sprintf(buf, "%d", max);
+	icText(topLeftCoord[0] + 1, topLeftCoord[1], buf);
+
+	sprintf(buf, "%d", min);
+	icText(topLeftCoord[0] + 1, bottomRightCoord[1], buf);
 
 	icCurrentChar = lastChar;
 }
