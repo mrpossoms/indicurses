@@ -28,8 +28,8 @@ tests: testlib
 
 install:
 	echo 'Installing the library'
-	cp $(DST)/include/*.h /usr/include
-	cp $(DST)/*.a /usr/lib
+	cp $(DST)/include/*.h /usr/local/include
+	cp $(DST)/*.a /usr/local/lib
 clean:
 	find ./ -iname "*.a" -exec rm {} \;
 	find ./ -iname "*.o" -exec rm {} \;

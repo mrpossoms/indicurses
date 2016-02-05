@@ -3,12 +3,43 @@
 #include <stdlib.h>
 #include <math.h>
 
+static int _min(int* data, unsigned int points)
+{
+	int min = data[0];
+
+	for(;points--;){
+		min = data[points] < min ? data[points] : min;
+	}
+
+	return min;
+}
+
+static int _max(int* data, unsigned int points)
+{
+	int max = data[0];
+
+	for(;points--;){
+		max = data[points] > max ? data[points] : max;
+	}
+
+	return max;
+}
+
+static int _map(int x, int in_min, int in_max, int out_min, int out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, int* data, unsigned int dataPoints)
 {
-	int w = bottomRightCoord[0] - topLeftCoord[0];
-	int h = bottomRightCoord[1] - topLeftCoord[1];
+	int w  = bottomRightCoord[0] - topLeftCoord[0];
+	int h  = bottomRightCoord[1] - topLeftCoord[1];
+	int hh = h >> 1;
 	int origin[2] = { topLeftCoord[0], bottomRightCoord[1] };
 	char lastChar = icCurrentChar;
+
+	int min = _min(data, dataPoints);
+	int max = _max(data, dataPoints);
 
 	// draw y axis
 	icCurrentChar = '|';
@@ -30,8 +61,8 @@ void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, in
 		for(int i = w; i--;){
 			if(i){
 				icLine(
-					origin[0] + i, origin[1] - data[(int)(i * di)],
-					origin[0] + (i - 1), origin[1] - data[(int)((i - 1) * di)]
+					origin[0] + i, _map(data[(int)(i * di)], min, max, topLeftCoord[1], bottomRightCoord[1]),
+					origin[0] + (i - 1), _map(data[(int)((i - 1) * di)], min, max, topLeftCoord[1], bottomRightCoord[1])
 				);
 			}
 		}
