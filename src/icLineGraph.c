@@ -30,7 +30,7 @@ static int _map(int x, int in_min, int in_max, int out_min, int out_max)
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, int* data, unsigned int dataPoints)
+void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, int* data, unsigned int dataPoints, int* minMax)
 {
 	int w  = bottomRightCoord[0] - topLeftCoord[0];
 	int h  = bottomRightCoord[1] - topLeftCoord[1];
@@ -38,8 +38,8 @@ void icLineGraph(int topLeftCoord[2], int bottomRightCoord[2], char lineChar, in
 	int origin[2] = { topLeftCoord[0], bottomRightCoord[1] };
 	char lastChar = icCurrentChar;
 
-	int min = _min(data, dataPoints);
-	int max = _max(data, dataPoints);
+	int min = minMax[0];
+	int max = minMax[1];
 
 	// draw y axis
 	icCurrentChar = '|';
