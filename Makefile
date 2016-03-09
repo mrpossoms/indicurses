@@ -1,5 +1,5 @@
 NAME=indicurses
-FLAGS=-Wint-to-pointer-cast
+FLAGS=-Wint-to-pointer-cast -std=gnu99
 SRC=./src/*.c
 INC=./include
 DST=./lib
@@ -11,7 +11,7 @@ TST=./tests
 TSTS=./tests/*.c
 
 all:
-	gcc -I$(INC) -c $(SRC)
+	gcc $(FLAGS) -I$(INC) -c $(SRC):
 	ar rcs $(DST)/$(LIB) *.o
 	rm *.o
 	mkdir -p $(DST)/include
