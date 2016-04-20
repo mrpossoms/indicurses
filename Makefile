@@ -1,7 +1,7 @@
 NAME=indicurses
 FLAGS=-Wint-to-pointer-cast -std=gnu99
 SRC=./src/*.c
-INC=./include
+INC=-I./include
 DST=./lib
 LINK=-string -lncurses -lm
 LIB=libindicurses.a
@@ -11,7 +11,7 @@ TST=./tests
 TSTS=./tests/*.c
 
 all:
-	gcc $(FLAGS) -I$(INC) -c $(SRC):
+	gcc $(FLAGS) $(INC) -c $(SRC)
 	ar rcs $(DST)/$(LIB) *.o
 	rm *.o
 	mkdir -p $(DST)/include

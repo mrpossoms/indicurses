@@ -1,5 +1,4 @@
 #include "indicurses.h"
-#include <ncurses.h>
 #include <math.h>
 #include <unistd.h>
 #include <signal.h>
