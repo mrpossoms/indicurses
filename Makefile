@@ -27,7 +27,7 @@ tests: testlib
 	$(foreach test, $(TSTS), gcc $(test) -o $(TST)/bin/$(test).bin
 
 install:
-	echo 'Installing the library'
+	@echo 'Installing the library'
 	cp $(DST)/include/*.h /usr/local/include
 	cp $(DST)/*.a /usr/local/lib
 clean:
